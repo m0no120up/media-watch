@@ -1,13 +1,5 @@
-const bills = [
-  { name: "子ども・子育て支援法改正案", passedDate: "2024-06-05", importance: 9, mediaCount: 342 },
-  { name: "経済安全保障推進法改正案", passedDate: "2024-05-17", importance: 8, mediaCount: 215 },
-  { name: "デジタル社会形成基本法改正案", passedDate: "2024-04-24", importance: 7, mediaCount: 98 },
-  { name: "地域脱炭素推進法案", passedDate: "2024-04-12", importance: 6, mediaCount: 76 },
-  { name: "道路交通法改正案", passedDate: "2024-03-28", importance: 5, mediaCount: 134 },
-  { name: "農業基本法改正案", passedDate: "2024-03-15", importance: 7, mediaCount: 61 },
-  { name: "量子技術イノベーション推進法案", passedDate: "2024-02-29", importance: 4, mediaCount: 23 },
-  { name: "空家等対策特別措置法改正案", passedDate: "2024-02-14", importance: 5, mediaCount: 89 },
-];
+import Link from "next/link";
+import { bills } from "@/lib/bills";
 
 function ImportanceBadge({ value }: { value: number }) {
   const color =
@@ -43,12 +35,19 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {bills.map((bill, i) => (
+              {bills.map((bill) => (
                 <tr
-                  key={i}
+                  key={bill.id}
                   className="border-b border-gray-100 hover:bg-blue-50 transition-colors"
                 >
-                  <td className="px-6 py-4 font-medium text-gray-900">{bill.name}</td>
+                  <td className="px-6 py-4 font-medium text-gray-900">
+                    <Link
+                      href={`/bills/${bill.id}`}
+                      className="text-blue-700 hover:underline"
+                    >
+                      {bill.name}
+                    </Link>
+                  </td>
                   <td className="px-6 py-4 text-gray-500">{bill.passedDate}</td>
                   <td className="px-6 py-4 text-center">
                     <ImportanceBadge value={bill.importance} />

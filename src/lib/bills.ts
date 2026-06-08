@@ -5,13 +5,24 @@ export type Bill = {
   importance: number;
   mediaCount: number;
   summary: string;
-  affectedPopulation: string;
-  budget: string;
+  affectedPopulation?: string;
+  budget?: string;
+  status?: string;
 };
 
 export const bills: Bill[] = [
   {
     id: 0,
+    name: "国民投票法改正案",
+    passedDate: "審議中",
+    importance: 10,
+    mediaCount: 12,
+    summary:
+      "自民・維新・国民民主・参政の4党が2026年6月5日に衆院へ共同提出。6月11日に衆院憲法審査会で審議入りの見通し。憲法改正の手続きを定める法律の改正で、今国会での成立が予想される。",
+    status: "審議中",
+  },
+  {
+    id: 1,
     name: "子ども・子育て支援法改正案",
     passedDate: "2024-06-05",
     importance: 9,
@@ -22,7 +33,7 @@ export const bills: Bill[] = [
     budget: "約3.6兆円（年間）",
   },
   {
-    id: 1,
+    id: 2,
     name: "経済安全保障推進法改正案",
     passedDate: "2024-05-17",
     importance: 8,
@@ -33,7 +44,7 @@ export const bills: Bill[] = [
     budget: "約4,500億円（5年間の支援予算）",
   },
   {
-    id: 2,
+    id: 3,
     name: "デジタル社会形成基本法改正案",
     passedDate: "2024-04-24",
     importance: 7,
@@ -44,7 +55,7 @@ export const bills: Bill[] = [
     budget: "約1.2兆円（システム整備費用・5年間）",
   },
   {
-    id: 3,
+    id: 4,
     name: "地域脱炭素推進法案",
     passedDate: "2024-04-12",
     importance: 6,
@@ -55,7 +66,7 @@ export const bills: Bill[] = [
     budget: "約8,000億円（補助金・5年間）",
   },
   {
-    id: 4,
+    id: 5,
     name: "道路交通法改正案",
     passedDate: "2024-03-28",
     importance: 5,
@@ -66,7 +77,7 @@ export const bills: Bill[] = [
     budget: "約300億円（インフラ整備・安全対策）",
   },
   {
-    id: 5,
+    id: 6,
     name: "農業基本法改正案",
     passedDate: "2024-03-15",
     importance: 7,
@@ -77,7 +88,7 @@ export const bills: Bill[] = [
     budget: "約2,300億円（農業支援・年間）",
   },
   {
-    id: 6,
+    id: 7,
     name: "量子技術イノベーション推進法案",
     passedDate: "2024-02-29",
     importance: 4,
@@ -88,7 +99,7 @@ export const bills: Bill[] = [
     budget: "約1,000億円（研究開発費・5年間）",
   },
   {
-    id: 7,
+    id: 8,
     name: "空家等対策特別措置法改正案",
     passedDate: "2024-02-14",
     importance: 5,

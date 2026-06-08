@@ -77,16 +77,22 @@ export default async function BillPage({
           <p className="text-gray-700 leading-relaxed text-sm">{bill.summary}</p>
         </section>
 
-        {/* 影響・規模 */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
-            影響・規模
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <StatCard label="影響人口" value={bill.affectedPopulation} />
-            <StatCard label="予算規模" value={bill.budget} />
-          </div>
-        </section>
+        {/* 影響・規模（データがある場合のみ表示） */}
+        {(bill.affectedPopulation || bill.budget) && (
+          <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
+              影響・規模
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {bill.affectedPopulation && (
+                <StatCard label="影響人口" value={bill.affectedPopulation} />
+              )}
+              {bill.budget && (
+                <StatCard label="予算規模" value={bill.budget} />
+              )}
+            </div>
+          </section>
+        )}
 
         <p className="text-xs text-gray-400 text-right">※ 仮データです</p>
       </main>

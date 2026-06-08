@@ -37,6 +37,20 @@ async function fetchAndParse(url: string, keyword?: string): Promise<Article[]> 
   return parseItems(xml, keyword);
 }
 
+// ランキング用：Google News の件数だけ取得（記事詳細は不要）
+export async function fetchGoogleNewsCount(billName: string): Promise<number> {
+  const url = `https://news.google.com/rss/search?q=${encodeURIComponent(billName)}&hl=ja&gl=JP&ceid=JP:ja`;
+  try {
+    const res = await fetch(url, { next: { revalidate: 3600 } });
+    if (!res.ok) return 0;
+    const xml = await res.text();
+    const items = xml.match(/<item[\s>][\s\S]*?<\/item>/gi) ?? [];
+    return items.length;
+  } catch {
+    return 0;
+  }
+}
+
 export async function fetchMediaCounts(billName: string): Promise<MediaResult[]> {
   const sources = [
     {
